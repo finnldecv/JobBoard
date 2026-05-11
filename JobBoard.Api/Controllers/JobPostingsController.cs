@@ -12,11 +12,11 @@ namespace JobBoard.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class JobPostingController : ControllerBase
+public class JobPostingsController : ControllerBase
 {
     private readonly IJobPostingService _jobPostingService;
 
-    public JobPostingController(IJobPostingService jobPostingService)
+    public JobPostingsController(IJobPostingService jobPostingService)
     {
         _jobPostingService = jobPostingService;
     }
