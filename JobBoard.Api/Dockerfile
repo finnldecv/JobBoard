@@ -6,7 +6,7 @@ WORKDIR /src
 COPY ["JobBoard.Api.csproj", "./"]
 RUN dotnet restore "JobBoard.Api.csproj"
 COPY . .
-RUN dotnet buld "JobBoard.Api.csproj" -c Release -o /app/build
+RUN dotnet build "JobBoard.Api.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "JobBoard.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 FROM base AS final

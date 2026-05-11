@@ -19,8 +19,8 @@ builder.Services.AddSwaggerGen(c =>
         Description = "Just paste your token here! Swagger will automatically add 'Bearer ' for you.",
         Name = "Authorization",
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http, // <-- This is the magic change!
-        Scheme = "Bearer",              // <-- This tells it what word to add!
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
         BearerFormat = "JWT"
     });
 
