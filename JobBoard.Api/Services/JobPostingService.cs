@@ -13,20 +13,35 @@ public class JobPostingService : IJobPostingService
     {
         _dbContext = dbContext;
     }
-    public async Task<IEnumerable<JobPostingResponse>> GetAllActiveJobsAsync()
+    public async Task<IEnumerable<JobPostingResponse>> GetAllActiveJobsAsync(JobQueryParameters queryParameters)
     {
-        var jobs = await _dbContext.JobPostings
+        var query = _dbContext.JobPostings
+            .Include(j => j.Company)
             .Where(j => j.IsActive)
-            .ToListAsync();
-            
-        return  jobs.Select(job => new JobPostingResponse
+            .AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(queryParameters.SearchTerm))
         {
-            Id = job.Id,
-            Title = job.Title,
-            Description = job.Description,
-            Location = job.Location,
-            CreatedAt = job.CreatedAt
-        });
+            query = query.Where(j => j.Title.Contains(queryParameters.SearchTerm) ||
+                                     j.Description.Contains(queryParameters.SearchTerm));
+        }
+
+        var skipAmount = (queryParameters.Page - 1) * queryParameters.PageSize;
+
+        return await query
+            .Distinct()
+            .OrderBy(j => j.Title)
+            .Skip(skipAmount)
+            .Take(queryParameters.PageSize)
+            .Select(job => new JobPostingResponse
+            {
+                Id = job.Id,
+                Title = job.Title,
+                Description = job.Description,
+                Location = job.Location,
+                CreatedAt = job.CreatedAt,
+            })
+            .ToListAsync();
     }
     public async Task<JobPostingResponse?> GetJobByIdAsync(Guid id)
     {
@@ -50,7 +65,8 @@ public class JobPostingService : IJobPostingService
         {
             Title = requestDto.Title,
             Description = requestDto.Description,
-            Location = requestDto.Location
+            Location = requestDto.Location,
+            CompanyId = requestDto.CompanyId
         };
         _dbContext.JobPostings.Add(newJob);
         await _dbContext.SaveChangesAsync();

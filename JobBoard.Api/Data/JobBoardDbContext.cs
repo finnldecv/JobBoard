@@ -9,4 +9,5 @@ public class JobBoardDbContext : DbContext
     {
     }
     public DbSet<JobPosting> JobPostings { get; set; }
+    public DbSet<Company> Companies { get; set; }
 }

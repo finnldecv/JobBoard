@@ -6,8 +6,9 @@ public class CreateJobPostingRequest
 {
     [Required]
     [MaxLength(100)]
-    public string? Title { get; set; }
+    public string Title { get; set; } = string.Empty;
     [Required]
-    public string? Description { get; set; }
+    public string Description { get; set; } = string.Empty;
     public string? Location { get; set; }
+    public Guid CompanyId {get; set;}
 }

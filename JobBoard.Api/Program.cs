@@ -16,11 +16,12 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        Description = "Just paste your token here! Swagger will automatically add 'Bearer ' for you.",
         Name = "Authorization",
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
+        Type = SecuritySchemeType.Http, // <-- This is the magic change!
+        Scheme = "Bearer",              // <-- This tells it what word to add!
+        BearerFormat = "JWT"
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -43,6 +44,7 @@ builder.Services.AddDbContext<JobBoardDbContext>(opts =>
     opts.UseSqlServer(connectionString);
 });
 builder.Services.AddScoped<IJobPostingService, JobPostingService>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
 
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.ASCII.GetBytes(jwtSettings["key"]!);
@@ -75,7 +77,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();

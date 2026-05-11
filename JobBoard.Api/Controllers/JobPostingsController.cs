@@ -21,9 +21,9 @@ public class JobPostingController : ControllerBase
         _jobPostingService = jobPostingService;
     }
     [HttpGet]
-    public async Task<IActionResult> GetAllActiveJobs()
+    public async Task<IActionResult> GetAllActiveJobs([FromQuery] JobQueryParameters queryParameters)
     {
-        var jobs = await _jobPostingService.GetAllActiveJobsAsync();
+        var jobs = await _jobPostingService.GetAllActiveJobsAsync(queryParameters);
         return Ok(jobs);
     }
     [HttpGet("{id}")]
