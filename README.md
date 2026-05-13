@@ -41,23 +41,196 @@ A modern, RESTful Web API built with ASP.NET Core for managing job postings. Thi
     cd JobBoard.Api
     ```
 
-2.  **Database Configuration:**
-    By default, the application runs using an **In-Memory database** for easy testing. If you wish to use SQL Server, update the connection string in `appsettings.json` (Ensure you use `User ID` instead of `username`) and update your `Program.cs` to use `UseSqlServer()`.
+2.  **Configure the Database:**
+    Update the `DefaultConnection` in `appsettings.json` with your local SQL Server connection string.
 
-3.  **Run the application:**
+3.  **Apply Migrations:**
+    ```bash
+    dotnet ef database update
+    ```
+
+4.  **Run the Application:**
     ```bash
     dotnet run
     ```
+    The API will be available at `http://localhost:5000` (or the port specified in your logs). Browse to `/swagger` to view the interactive docs.
 
-4.  **Test the API (Swagger):**
-    Once the application is running, open your browser and navigate to the Swagger UI to test the endpoints interactively:
-    `https://localhost:<port>/swagger`
+---
 
-## 📁 Project Structure
+## 🛡 Security Note
+This project utilizes **Environment Variables** for sensitive data (Connection Strings, JWT Secrets). Never commit your `appsettings.json` with real passwords to version control.
 
-*   `Controllers/` - Contains the HTTP API endpoints (`JobPostingsController`).
-*   `Models/` - Contains the core database entities (`JobPosting`).
-*   `DTOs/` - Contains the Request and Response data transfer objects.
-*   `Services/` - Contains the core business logic (`JobPostingService`).
-*   `Interfaces/` - Contains the contracts for Dependency Injection (`IJobPostingService`).
-*   `Data/` - Contains the Entity Framework DbContext (`JobBoardDbContext`).
+---
+
+## 👨‍💻 About the Author
+**Hong Nhan Lam**  
+A self-taught software developer with a background in **Automotive Engineering Technology** from **Ho Chi Minh City University of Technology (HCMUT)**. 
+
+> "I leverage my engineering foundation to build robust, scalable software solutions. Currently specializing in the .NET ecosystem and pursuing an IELTS target of 6.5 to excel in international tech environments".
+
+---
+
+### **Pro-Tip for your GitHub:**
+To make this README even better, take a screenshot of your **Tailwind CSS cards** and your **Swagger UI** page. Add them to a folder in your repo named `screenshots`, and thenA professional `README.md` is the "storefront" of your project on GitHub. It’s often the first thing a recruiter sees before they even look at your code. 
+
+For a developer with an Engineering background from **HCMUT**, this file should be clean, logical, and highlight the technical complexity you've mastered.
+
+---
+
+# JobBoard Connect | Full-Stack .NET API
+
+**JobBoard Connect** is a production-ready, cloud-deployed RESTful API designed to manage job listings. This project demonstrates a complete software development lifecycle, from containerization with **Docker** to cloud hosting on **Render** and **Azure SQL**.
+
+## 🚀 Live Demo
+*   **Live API (Swagger):** [Your Render URL goes here]
+*   **Frontend Interface:** [Your Vercel/Netlify URL goes here]
+
+---
+
+## 🛠 Tech Stack
+
+| Category | Technology |
+| :--- | :--- |
+| **Backend** | .NET 8, ASP.NET Core |
+| **Database** | Azure SQL (Production), MS SQL Server (Local) |
+| **ORM** | Entity Framework Core |
+| **Security** | JWT Authentication, CORS Policy |
+| **DevOps** | Docker, Render Blueprint, GitHub |
+| **Frontend** | HTML5, Tailwind CSS, JavaScript (Fetch API) |
+
+---
+
+## ✨ Key Features
+
+*   **Full CRUD Implementation:** Manage job postings (Create, Read, Update, Delete) with a clean service-oriented architecture.
+*   **Cloud-Connected:** Fully integrated with an **Azure SQL** database, managed through Entity Framework migrations.
+*   **Secure Authentication:** Protected endpoints using **JWT (JSON Web Tokens)** to ensure only authorized users can modify job listings.
+*   **Interactive Documentation:** Integrated **Swagger UI** for real-time API testing and documentation.
+*   **Responsive UI:** A lightweight frontend that consumes the API to display active jobs in a modern, mobile-friendly card layout.
+
+---
+
+## ⚙️ Local Setup & Installation
+
+### Prerequisites
+*   [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+*   [SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+
+### Installation
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/JobBoard.git
+    cd JobBoard/JobBoard.Api
+    ```
+
+2.  **Configure the Database:**
+    Update the `DefaultConnection` in `appsettings.json` with your local SQL Server connection string.
+
+3.  **Apply Migrations:**
+    ```bash
+    dotnet ef database update
+    ```
+
+4.  **Run the Application:**
+    ```bash
+    dotnet run
+    ```
+    The API will be available at `http://localhost:5000` (or the port specified in your logs). Browse to `/swagger` to view the interactive docs.
+
+---
+
+## 🛡 Security Note
+This project utilizes **Environment Variables** for sensitive data (Connection Strings, JWT Secrets). Never commit your `appsettings.json` with real passwords to version control.
+
+---
+
+## 👨‍💻 About the Author
+**Hong Nhan Lam**  
+A self-taught software developer with a background in **Automotive Engineering Technology** from **Ho Chi Minh City University of Technology (HCMUT)**. 
+
+> "I leverage my engineering foundation to build robust, scalable software solutions. Currently specializing in the .NET ecosystem and pursuing an IELTS target of 6.5 to excel in international tech environments".
+
+---
+
+### **Pro-Tip for your GitHub:**
+To make this README even better, take a screenshot of your **Tailwind CSS cards** and your **Swagger UI** page. Add them to a folder in your repo named `screenshots`, and then link them in the README using:
+`![Dashboard Screenshot](./screenshots/dashboard.png)A professional `README.md` is the "storefront" of your project on GitHub. It’s often the first thing a recruiter sees before they even look at your code. 
+
+For a developer with an Engineering background from **HCMUT**, this file should be clean, logical, and highlight the technical complexity you've mastered.
+
+---
+
+# JobBoard Connect | Full-Stack .NET API
+
+**JobBoard Connect** is a production-ready, cloud-deployed RESTful API designed to manage job listings. This project demonstrates a complete software development lifecycle, from containerization with **Docker** to cloud hosting on **Render** and **Azure SQL**.
+
+## 🚀 Live Demo
+*   **Live API (Swagger):** [Your Render URL goes here]
+*   **Frontend Interface:** [Your Vercel/Netlify URL goes here]
+
+---
+
+## 🛠 Tech Stack
+
+| Category | Technology |
+| :--- | :--- |
+| **Backend** | .NET 8, ASP.NET Core |
+| **Database** | Azure SQL (Production), MS SQL Server (Local) |
+| **ORM** | Entity Framework Core |
+| **Security** | JWT Authentication, CORS Policy |
+| **DevOps** | Docker, Render Blueprint, GitHub |
+| **Frontend** | HTML5, Tailwind CSS, JavaScript (Fetch API) |
+
+---
+
+## ✨ Key Features
+
+*   **Full CRUD Implementation:** Manage job postings (Create, Read, Update, Delete) with a clean service-oriented architecture.
+*   **Cloud-Connected:** Fully integrated with an **Azure SQL** database, managed through Entity Framework migrations.
+*   **Secure Authentication:** Protected endpoints using **JWT (JSON Web Tokens)** to ensure only authorized users can modify job listings.
+*   **Interactive Documentation:** Integrated **Swagger UI** for real-time API testing and documentation.
+*   **Responsive UI:** A lightweight frontend that consumes the API to display active jobs in a modern, mobile-friendly card layout.
+
+---
+
+## ⚙️ Local Setup & Installation
+
+### Prerequisites
+*   [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+*   [SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+
+### Installation
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/JobBoard.git
+    cd JobBoard/JobBoard.Api
+    ```
+
+2.  **Configure the Database:**
+    Update the `DefaultConnection` in `appsettings.json` with your local SQL Server connection string.
+
+3.  **Apply Migrations:**
+    ```bash
+    dotnet ef database update
+    ```
+
+4.  **Run the Application:**
+    ```bash
+    dotnet run
+    ```
+    The API will be available at `http://localhost:5000` (or the port specified in your logs). Browse to `/swagger` to view the interactive docs.
+
+---
+
+## 🛡 Security Note
+This project utilizes **Environment Variables** for sensitive data (Connection Strings, JWT Secrets). Never commit your `appsettings.json` with real passwords to version control.
+
+---
+
+## 👨‍💻 About the Author
+**Hong Nhan Lam**  
+A self-taught software developer with a background in **Automotive Engineering Technology** from **Ho Chi Minh City University of Technology (HCMUT)**. 
+
+> "I leverage my engineering foundation to build robust, scalable software solutions. Currently specializing in the .NET ecosystem and pursuing an IELTS target of 6.5 to excel in international tech environments".
+
+---
